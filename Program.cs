@@ -178,6 +178,24 @@ namespace Blackjack
 
         }
 
+        /// <summary>
+        /// crea metodo empate y dependiendo de la condicion que se cumpla arroja un mensaje distinto
+        /// </summary>
+        static void Empate()
+        {
+            if (total > 21 && totalCasa > 21)
+            {
+                Console.WriteLine("\nEs un empate!  El total de la casa es " + totalCasa + ", Ambos se pasan de 21" + ".\nTe gustaria jugar de nuevo? s/n");
+                JugardeNuevo();
+            }
+            else if (total == totalCasa)
+            {
+                Console.WriteLine("\nEs un empate!  El total de la casa tambien es " + totalCasa + ", Ambos totales son iguales" + ".\nTe gustaria jugar de nuevo? s/n");
+                JugardeNuevo();
+            }
+        }
+
+
         static void Main(string[] args)
         {
 
@@ -186,6 +204,7 @@ namespace Blackjack
 
 
             //TODO: Metodo de empate, donde se pongan los casos para considerar empate
+
 
 
 
