@@ -143,6 +143,41 @@ namespace Blackjack
 
         }
 
+        // Crear El juego en si
+        /// <summary>
+        /// Verifica la respuesta del jugador si pedir o pasar, ademas que revisa si gano, perdio o empato
+        /// </summary>
+        static void Juego()
+        {
+            if (pedirOpasar.Equals("pedir"))  // esto si escoge la opcion pedir
+            {
+                Pedir(); //Llama al metodo pedir
+            }
+            else if (pedirOpasar.Equals("pasar")) // si escogen pasar
+            {
+                if (total > totalCasa && total <= 21) // si el total es mayor que la casa y menor o igual a 21
+                {
+                    Console.WriteLine("\nFelicidades! Has Ganado! El total de la Casa era " + totalCasa + ".\nTe gustaria jugar de nuevo? s/n"); //le dice al usuario que gano, le dice el total de la casa y pregunta si quiere jugar de nuevo
+                    JugardeNuevo(); //llama al metodo jugardenuevo
+                }
+                else if (total < totalCasa && totalCasa <= 21) // si el total es menor que el de la casa...
+                {
+                    Console.WriteLine("\nLo siento, Has perdido  El total de la casa era " + totalCasa + ".\nTe gustaria jugar de nuevo? s/n"); //le dice al usuario que perdio y le da el total de la casa, pregunta si quiere jugar de nuevo
+                    JugardeNuevo(); //llama al metodo jugardenuevo
+                }
+                else if (totalCasa > 21 && total <= 21)
+                {
+                    Console.WriteLine("\nFelicidades! Has Ganado! El total de la Casa era " + totalCasa + ", Lo cual se pasa de 21" + ".\nTe gustaria jugar de nuevo? s/n");
+                    JugardeNuevo();
+                }
+                else
+                {
+                    Empate();
+                }
+            }
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -152,9 +187,6 @@ namespace Blackjack
 
             //TODO: Metodo de empate, donde se pongan los casos para considerar empate
 
-
-
-            //TODO: Metodo pedir , cuando el jugador decida pedir cartas, que le de una y verficar si con esa carta gano, perdio o empato, o si quiere seguir pidiendo
 
 
             //TODO: metodo para jugar de nuevo, aqui se resetean todos los valores y tambien se puede cerrar el juego
