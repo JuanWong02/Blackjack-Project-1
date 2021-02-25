@@ -195,6 +195,35 @@ namespace Blackjack
             }
         }
 
+        /// <summary>
+        /// Metodo que reinicia valores o cierra el juego segun se elija
+        /// </summary>
+        static void JugardeNuevo()
+        {
+            string jugardeNuevo = ""; // crea un string para preguntar si juega de nuevo
+            do
+            {
+                jugardeNuevo = Console.ReadLine().ToLower();
+            } while (!jugardeNuevo.Equals("s") && !jugardeNuevo.Equals("n")); // se repite hasta que se ponga s o n al preguntar si juega de nuevo
+
+            if (jugardeNuevo.Equals("s")) // si decide jugar d enuevo
+            {
+                Console.WriteLine("\nPresiona enter para reiniciar el juego!");
+                Console.ReadLine();
+                Console.Clear(); // borra la consola
+                totalCasa = 0; // resetea los valores de la casa
+                count = 1; // resetea el conteo
+                total = 0; // resetea nuestro total
+                Empezar(); // llama el metodo empezar para reiniciar el juego
+            }
+            else if (jugardeNuevo.Equals("n")) // si oprime que no quiere jugar de nuevo
+            {
+                Console.WriteLine("\nPresiona enter para cerrar el juego.");
+                Console.ReadLine();
+                Environment.Exit(0); //cierra la consola 
+            }
+        }
+
 
         static void Main(string[] args)
         {
