@@ -7,7 +7,7 @@ namespace Blackjack
         /// <summary>
         /// Crea las variables globales
         /// </summary>
-        
+
         //1- declarar variables globales
         static string[] cartasjugador = new string[12]; //crea string de las cartas del jugador el 12 no se incluye por lo cual tiene 11
         static string pedirOpasar = ""; // crea una variable string para preguntar si pone o pasa
@@ -89,42 +89,63 @@ namespace Blackjack
 
 
         //  3- crear inicio del juego
-         /// <summary>
+        /// <summary>
         /// Crea metodo para empezar el juego, pregunta si el jugador quiere pedir o pasar, ademas de asignarle valor a la casa
         /// </summary>
-       
-             static void Empezar()
+
+        static void Empezar()
+        {
+            totalCasa = cartaAleatoria.Next(17, 27);// numero aleatorio entre 1 y 26 para el numero de la casa
+            do
             {
-                totalCasa = cartaAleatoria.Next(17,27);// numero aleatorio entre 1 y 26 para el numero de la casa
+                Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + ".\nTe gustaria pedir o pasar?"); //pregunta si quiere pedir o pasar
+                pedirOpasar = Console.ReadLine().ToLower();
+            } while (!pedirOpasar.Equals("pedir") && !pedirOpasar.Equals("pasar")); // le dice al usuario que numeros le tocaron, despues se le pregunta si quiere poner o pasar. Hace esto hasta que entrega un valor correcto.
+
+        }
+
+
+        /// <summary>
+        /// crea el metodo pedir, si el usuario elige tomar una carta
+        /// </summary>
+
+        static void Pedir()
+        {
+            count += 1; // añade uno al conteo, count es donde obtenemos el numero para indexar las cartas del jugador
+            cartasjugador[count] = Repartidor(); // repartir una carta nueva al jugador
+
+
+            Console.WriteLine("\nTe han dado " + cartasjugador[count] + ".\nTu nuevo total es " + total + "."); // le dice al jugador que le tocó
+            if (total.Equals(21)) // si el total es 21
+            {
+                Console.WriteLine("\nFelicidades! Has Ganado! El total de la Casa era " + totalCasa + ".\nTe gustaria jugar de nuevo? s/n");
+                JugardeNuevo();
+            }
+            else if (total > 21 && totalCasa <= 21) // si el total es mayor a 21
+            {
+                Console.WriteLine("\nLo siento, Has perdido  El total de la casa era " + totalCasa + ".\nTe gustaria jugar de nuevo? s/n");
+                JugardeNuevo();
+            }
+
+            else if (total > 21 && totalCasa > 21)
+            {
+                Empate();
+            }
+            else// si toco menor a 21
+            {
                 do
                 {
-                    Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + ".\nTe gustaria pedir o pasar?"); //pregunta si quiere pedir o pasar
+                    Console.WriteLine("\nTe gustaria pedir o pasar?");
                     pedirOpasar = Console.ReadLine().ToLower();
-                } while (!pedirOpasar.Equals("pedir") && !pedirOpasar.Equals("pasar")); // le dice al usuario que numeros le tocaron, despues se le pregunta si quiere poner o pasar. Hace esto hasta que entrega un valor correcto.
-                
+                } while (!pedirOpasar.Equals("pedir") && !pedirOpasar.Equals("pasar")); // pregunt si quiere pedir o pasar, hasta que de una respuesta valida
+                Juego(); //llama al metodo de juego
             }
+
+        }
 
         static void Main(string[] args)
         {
 
-
-
-
-
-
-
-
-
-
-
-            //TODO: Crear metodo que inicie el juego y pregunte al jugador si quiere pedir o pasar
-
-
-
-
-
-
-            //TODO: Metodo del juego en si, donde estara opciones de pedir o pasar y aqui si gana, pierde o empata
 
 
 
