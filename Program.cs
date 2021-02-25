@@ -86,6 +86,24 @@ namespace Blackjack
             return carta;
         }
 
+
+
+        //  3- crear inicio del juego
+         /// <summary>
+        /// Crea metodo para empezar el juego, pregunta si el jugador quiere pedir o pasar, ademas de asignarle valor a la casa
+        /// </summary>
+       
+             static void Empezar()
+            {
+                totalCasa = cartaAleatoria.Next(17,27);// numero aleatorio entre 1 y 26 para el numero de la casa
+                do
+                {
+                    Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + ".\nTe gustaria pedir o pasar?"); //pregunta si quiere pedir o pasar
+                    pedirOpasar = Console.ReadLine().ToLower();
+                } while (!pedirOpasar.Equals("pedir") && !pedirOpasar.Equals("pasar")); // le dice al usuario que numeros le tocaron, despues se le pregunta si quiere poner o pasar. Hace esto hasta que entrega un valor correcto.
+                
+            }
+
         static void Main(string[] args)
         {
 
