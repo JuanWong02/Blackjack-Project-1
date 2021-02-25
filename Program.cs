@@ -90,18 +90,21 @@ namespace Blackjack
 
         //  3- crear inicio del juego
         /// <summary>
-        /// Crea metodo para empezar el juego, pregunta si el jugador quiere pedir o pasar, ademas de asignarle valor a la casa
+        /// Crea metodo para empezar el juego, pregunta si el jugador quiere pedir o pasar, ademas de asignarle valor a la casa y darle dos cartas al jugador
         /// </summary>
 
         static void Empezar()
         {
             totalCasa = cartaAleatoria.Next(17, 27);// numero aleatorio entre 1 y 26 para el numero de la casa
-            ValorAs(); 
+            cartasjugador[0] = Repartidor(); //asigna a la primera posicion de las cartas del jugador el valor que se regrese del repartidor, esta es primera carta
+            cartasjugador[1] = Repartidor(); //asigna segunda posicion el valor que rgresa el repartido
+            ValorAs();
             do
             {
-                Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + ".\nTe gustaria pedir o pasar?"); //pregunta si quiere pedir o pasar
+                Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + cartasjugador[0] + " y " + cartasjugador[1] + ".\nTu Total es " + total + ".\nTe gustaria pedir o pasar?");
                 pedirOpasar = Console.ReadLine().ToLower();
             } while (!pedirOpasar.Equals("pedir") && !pedirOpasar.Equals("pasar")); // le dice al usuario que numeros le tocaron, despues se le pregunta si quiere poner o pasar. Hace esto hasta que entrega un valor correcto.
+                
 
         }
 
@@ -180,21 +183,21 @@ namespace Blackjack
 
         }
 
-         //fix 9. as valor de 11 a 1
-         /// <summary>
-         /// Metodo que cambia el valor del as
-         /// </summary>
-         /// <returns>Si jugador tiene un As, verificar si su total pasa de 21 y si es asi restar 10 para que este valga 1</returns>
-            static void ValorAs()
+        //fix 9. as valor de 11 a 1
+        /// <summary>
+        /// Metodo que cambia el valor del as
+        /// </summary>
+        /// <returns>Si jugador tiene un As, verificar si su total pasa de 21 y si es asi restar 10 para que este valga 1</returns>
+        static void ValorAs()
+        {
+            if (cartasjugador[count] == "As")
             {
-                if (cartasjugador[count] == "As")
+                if (total > 21)
                 {
-                    if (total > 21)
-                    {
-                        total -= 10;
-                    }
+                    total -= 10;
                 }
             }
+        }
 
         /// <summary>
         /// crea metodo empate y dependiendo de la condicion que se cumpla arroja un mensaje distinto
@@ -245,8 +248,8 @@ namespace Blackjack
 
         static void Main(string[] args)
         {
-            
 
+            
 
 
 
