@@ -104,7 +104,7 @@ namespace Blackjack
                 Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + cartasjugador[0] + " y " + cartasjugador[1] + ".\nTu Total es " + total + ".\nTe gustaria pedir o pasar?");
                 pedirOpasar = Console.ReadLine().ToLower();
             } while (!pedirOpasar.Equals("pedir") && !pedirOpasar.Equals("pasar")); // le dice al usuario que numeros le tocaron, despues se le pregunta si quiere poner o pasar. Hace esto hasta que entrega un valor correcto.
-                
+            Juego();
 
         }
 
@@ -249,7 +249,8 @@ namespace Blackjack
         static void Main(string[] args)
         {
 
-            
+            Console.Title = "Bienvenid@ a Blackjack!";
+            Empezar();
 
 
 
