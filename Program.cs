@@ -96,6 +96,7 @@ namespace Blackjack
         static void Empezar()
         {
             totalCasa = cartaAleatoria.Next(17, 27);// numero aleatorio entre 1 y 26 para el numero de la casa
+            ValorAs(); 
             do
             {
                 Console.WriteLine("Bienvenido a BlackJack! Tus Cartas son " + ".\nTe gustaria pedir o pasar?"); //pregunta si quiere pedir o pasar
@@ -113,6 +114,7 @@ namespace Blackjack
         {
             count += 1; // añade uno al conteo, count es donde obtenemos el numero para indexar las cartas del jugador
             cartasjugador[count] = Repartidor(); // repartir una carta nueva al jugador
+            ValorAs(); //verifica que valor toma el as
 
 
             Console.WriteLine("\nTe han dado " + cartasjugador[count] + ".\nTu nuevo total es " + total + "."); // le dice al jugador que le tocó
@@ -178,6 +180,22 @@ namespace Blackjack
 
         }
 
+         //fix 9. as valor de 11 a 1
+         /// <summary>
+         /// Metodo que cambia el valor del as
+         /// </summary>
+         /// <returns>Si jugador tiene un As, verificar si su total pasa de 21 y si es asi restar 10 para que este valga 1</returns>
+            static void ValorAs()
+            {
+                if (cartasjugador[count] == "As")
+                {
+                    if (total > 21)
+                    {
+                        total -= 10;
+                    }
+                }
+            }
+
         /// <summary>
         /// crea metodo empate y dependiendo de la condicion que se cumpla arroja un mensaje distinto
         /// </summary>
@@ -227,17 +245,11 @@ namespace Blackjack
 
         static void Main(string[] args)
         {
+            
 
 
 
 
-
-            //TODO: Metodo de empate, donde se pongan los casos para considerar empate
-
-
-
-
-            //TODO: metodo para jugar de nuevo, aqui se resetean todos los valores y tambien se puede cerrar el juego
 
 
 
